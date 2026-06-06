@@ -650,12 +650,12 @@
       .tools-grid { grid-template-columns: repeat(2, 1fr); }
       .projects-grid { grid-template-columns: repeat(2, 1fr); }
       .process-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-      .process-grid::before { display: flex; }
+      .process-grid::before { display: none; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
     }
     @media (max-width: 768px) {
       .section { padding: 5rem 0; }
-      .nav-links, .nav-cta { display: flex; }
+      .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
       .hero-stats { gap: 1.5rem; }
       .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
