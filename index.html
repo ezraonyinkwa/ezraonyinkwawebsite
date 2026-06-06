@@ -1236,8 +1236,8 @@
     <textarea name="message" class="form-control" placeholder="Briefly describe your current data challenge..." required></textarea>
   </div>
   <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;padding:1rem;">
-    Send Message
-  </button>
+  Send Message
+</button>
   <p class="form-note">I typically respond within 24 hours. For urgent matters, WhatsApp is fastest.</p>
 </form>
 </section>
@@ -1481,9 +1481,11 @@
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
   // ── Form submit ──
-  function handleFormSubmit() {
-    alert('Thank you for your message. I will respond within 24 hours.');
-  }
+  document.getElementById('contactForm').addEventListener('submit', function() {
+  setTimeout(() => {
+    this.reset();
+  }, 500);
+});
 </script>
 </body>
 </html>
