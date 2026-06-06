@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veriq | Business Intelligence Consultant | Analytics Engineering & AI Automation</title>
+  <meta name="description" content="Business Intelligence, Data Analytics, Analytics Engineering, and AI Automation solutions that help businesses make smarter decisions, automate workflows, and scale efficiently." />
+  <meta name="keywords" content="Business Intelligence, Data Analytics, Business Analysis, Analytics Engineering, AI Automation, Power BI, SQL, Data Warehousing, ETL, AI Workflows, Business Reporting" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─── */
+    :root {
+      --green:   #14532D;
+      --green-light: #1a6b39;
+      --ivory:   #F8F7F2;
+      --ivory-dark: #EFEDE5;
+      --gold:    #D4A017;
+      --gold-light: #e8b420;
+      --charcoal: #1F2937;
+      --charcoal-mid: #374151;
+      --muted:   #6B7280;
+      --border:  rgba(20,83,45,0.12);
+      --card-bg: #FFFFFF;
+      --shadow-sm: 0 2px 12px rgba(20,83,45,0.07);
+      --shadow-md: 0 8px 32px rgba(20,83,45,0.10);
+      --shadow-lg: 0 20px 60px rgba(20,83,45,0.13);
+      --radius: 4px;
+      --radius-lg: 8px;
+      --transition: all 0.28s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--ivory);
+      color: var(--charcoal);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ─── TYPOGRAPHY ─── */
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); font-weight: 700; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 700; }
+    h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 600; }
+    h4 { font-size: 1.05rem; font-weight: 600; font-family: 'DM Sans', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+    p { font-weight: 300; color: var(--charcoal-mid); }
+
+    /* ─── UTILITIES ─── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+    .section { padding: 7rem 0; }
+    .section-label {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(212,160,23,0.1);
+      padding: 0.3rem 0.9rem;
+      border-radius: 2px;
+      margin-bottom: 1.2rem;
+    }
+    .section-title { margin-bottom: 1rem; }
+    .section-subtitle { font-size: 1.05rem; max-width: 560px; color: var(--muted); margin-bottom: 3.5rem; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      font-weight: 500; font-size: 0.9rem; letter-spacing: 0.03em;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      border: none;
+    }
+    .btn-primary {
+      background: var(--green); color: #fff;
+    }
+    .btn-primary:hover { background: var(--green-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(20,83,45,0.25); }
+    .btn-gold {
+      background: var(--gold); color: #fff;
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,160,23,0.35); }
+    .btn-outline {
+      background: transparent; color: var(--green);
+      border: 1.5px solid var(--green);
+    }
+    .btn-outline:hover { background: var(--green); color: #fff; transform: translateY(-2px); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.25);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.22); }
+    .btn-sm { padding: 0.6rem 1.4rem; font-size: 0.82rem; }
+
+    /* ─── NAVBAR ─── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(248,247,242,0.92);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .navbar.scrolled { box-shadow: var(--shadow-sm); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px; gap: 1rem;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--green);
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 400; color: var(--charcoal-mid);
+      transition: var(--transition); position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1.5px;
+      background: var(--gold); transition: var(--transition);
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { display: flex; align-items: center; gap: 0.75rem; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--charcoal); transition: var(--transition); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      background: var(--green);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: 70px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(212,160,23,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(255,255,255,0.03) 0%, transparent 60%);
+    }
+    /* Decorative grid lines  */
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 420px;
+  gap: 5rem; align-items: center;
+  position: relative; z-index: 1;
+  width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 2rem;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+.hero h1 { color: #fff; margin-bottom: 1.5rem; }
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-sub {
+  font-size: 1.05rem; color: rgba(255,255,255,0.7);
+  max-width: 520px; margin-bottom: 2.5rem; font-weight: 300;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 3.5rem; }
+.hero-stats {
+  display: flex; gap: 2.5rem;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 2rem;
+}
+.stat-item {}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 700; color: var(--gold);
+  line-height: 1;
+}
+.stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 0.25rem; letter-spacing: 0.05em; }
+
+    /* Hero photo */
+    .hero-photo-wrap {
+      position: relative; display: flex; justify-content: center; align-items: flex-end;
+    }
+    .hero-photo-frame {
+      width: 360px; height: 460px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-photo-frame::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(20,83,45,0.6) 100%);
+      z-index: 1;
+    }
+    .photo-placeholder {
+      display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+      color: rgba(255,255,255,0.3); z-index: 2;
+    }
+    .photo-placeholder svg { width: 64px; height: 64px; }
+    .photo-placeholder span { font-size: 0.75rem; letter-spacing: 0.1em; }
+    .hero-badge {
+      position: absolute; bottom: -1rem; left: -1.5rem;
+      background: var(--gold); color: #fff;
+      padding: 0.85rem 1.4rem;
+      border-radius: var(--radius);
+      font-size: 0.8rem; font-weight: 500;
+      box-shadow: var(--shadow-md);
+      z-index: 3;
+    }
+    .hero-badge strong { display: block; font-size: 1.1rem; font-family: 'Playfair Display', serif; }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: var(--ivory-dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+    }
+    .trust-inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 3rem; flex-wrap: wrap;
+    }
+    .trust-item {
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); font-family: 'DM Mono', monospace;
+    }
+    .trust-sep { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
+
+    /* ─── WHY WORK WITH ME ─── */
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .why-card {
+      background: var(--card-bg);
+      padding: 2.5rem 2rem;
+      transition: var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .why-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--gold); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .why-card:hover::before { transform: scaleX(1); }
+    .why-card:hover { background: #FAFAF7; }
+    .why-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; font-weight: 700;
+      color: rgba(20,83,45,0.08);
+      line-height: 1; margin-bottom: 1rem;
+    }
+    .why-card h3 { font-size: 1.1rem; margin-bottom: 0.6rem; color: var(--green); }
+    .why-card p { font-size: 0.9rem; }
+
+    /* ─── ABOUT ─── */
+    .about-inner {
+      display: grid; grid-template-columns: 360px 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .about-photo {
+      width: 100%; aspect-ratio: 3/4;
+      background: var(--ivory-dark);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); flex-direction: column; gap: 0.5rem;
+      font-size: 0.78rem; letter-spacing: 0.08em;
+    }
+    .about-photo svg { width: 48px; height: 48px; color: var(--border); }
+    .about-content {}
+    .about-bio { font-size: 1.05rem; color: var(--charcoal-mid); margin-bottom: 2rem; line-height: 1.8; }
+    .about-bio strong { color: var(--green); font-weight: 600; }
+    .about-facts {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1rem; margin-top: 2.5rem;
+    }
+    .fact-box {
+      background: var(--ivory-dark);
+      border: 1px solid var(--border);
+      padding: 1.2rem 1.4rem;
+      border-radius: var(--radius);
+    }
+    .fact-box .fact-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 700; color: var(--green);
+    }
+    .fact-box .fact-key { font-size: 0.78rem; color: var(--muted); margin-top: 0.15rem; }
+
+    /* ─── SERVICES ─── */
+    .services-bg { background: var(--green); }
+    .services-bg .section-label { background: rgba(212,160,23,0.15); }
+    .services-bg h2 { color: #fff; }
+    .services-bg .section-subtitle { color: rgba(255,255,255,0.6); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      transition: var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .service-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: 0; transition: opacity 0.35s;
+    }
+    .service-card:hover { background: rgba(255,255,255,0.09); transform: translateY(-4px); }
+    .service-card:hover::after { opacity: 1; }
+    .service-icon {
+      width: 44px; height: 44px;
+      background: rgba(212,160,23,0.15);
+      border: 1px solid rgba(212,160,23,0.2);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .service-icon svg { width: 22px; height: 22px; stroke: var(--gold); }
+    .service-card h3 { color: #fff; margin-bottom: 0.75rem; font-size: 1.25rem; }
+    .service-card .service-desc { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
+    .service-list { list-style: none; margin-bottom: 1.5rem; }
+    .service-list li {
+      font-size: 0.85rem; color: rgba(255,255,255,0.7);
+      padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .service-list li::before { content: '—'; color: var(--gold); font-size: 0.7rem; }
+    .service-outcome {
+      background: rgba(212,160,23,0.08);
+      border: 1px solid rgba(212,160,23,0.15);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.8rem; color: rgba(255,255,255,0.6);
+      font-style: italic;
+    }
+
+    /* ─── PROCESS ─── */
+    .process-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .process-grid::before {
+      content: '';
+      position: absolute; top: 24px; left: 12.5%; right: 12.5%;
+      height: 1px; background: linear-gradient(90deg, var(--border), var(--gold), var(--border));
+      z-index: 0;
+    }
+    .process-step {
+      padding: 0 1.5rem;
+      text-align: center;
+      position: relative; z-index: 1;
+    }
+    .process-num {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--green); color: #fff;
+      font-family: 'Playfair Display', serif; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      border: 3px solid var(--ivory);
+      box-shadow: 0 0 0 1px var(--green);
+    }
+    .process-step h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .process-step p { font-size: 0.85rem; }
+
+    /* ─── TOOLS ─── */
+    .tools-bg { background: var(--ivory-dark); }
+    .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .tool-category {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+    .tool-category h4 { color: var(--green); margin-bottom: 1.25rem; font-size: 0.8rem; }
+    .tool-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tool-tag {
+      background: var(--ivory-dark);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.9rem;
+      border-radius: 2px;
+      font-size: 0.82rem; color: var(--charcoal-mid);
+      font-family: 'DM Mono', monospace;
+      transition: var(--transition);
+    }
+    .tool-tag:hover { background: var(--green); color: #fff; border-color: var(--green); }
+
+    /* ─── PROJECTS ─── */
+    .projects-filter {
+      display: flex; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      border-radius: 2px;
+      font-size: 0.82rem; font-weight: 500;
+      color: var(--muted); transition: var(--transition);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--green); color: #fff; border-color: var(--green);
+    }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .project-img {
+      height: 200px;
+      background: linear-gradient(135deg, var(--ivory-dark), var(--ivory));
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .project-img .img-placeholder {
+      color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    }
+    .project-img svg { width: 36px; height: 36px; }
+    .project-cat-badge {
+      position: absolute; top: 1rem; left: 1rem;
+      font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-family: 'DM Mono', monospace;
+      padding: 0.25rem 0.6rem; border-radius: 2px;
+    }
+    .cat-bi { background: rgba(20,83,45,0.1); color: var(--green); }
+    .cat-ae { background: rgba(59,130,246,0.1); color: #1d4ed8; }
+    .cat-ai { background: rgba(212,160,23,0.12); color: #92600a; }
+    .project-body { padding: 1.5rem; }
+    .project-body h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+    .project-body p { font-size: 0.87rem; color: var(--muted); margin-bottom: 1.25rem; }
+    .project-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .project-footer .tech-stack { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .tech-pill {
+      font-size: 0.7rem; font-family: 'DM Mono', monospace;
+      background: var(--ivory-dark); color: var(--muted);
+      padding: 0.2rem 0.5rem; border-radius: 2px;
+    }
+
+    /* ─── MODAL ─── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(20,83,45,0.7); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--ivory); max-width: 780px; width: 100%;
+      max-height: 88vh; overflow-y: auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(24px); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-header {
+      padding: 2.5rem 2.5rem 0;
+      position: sticky; top: 0; background: var(--ivory);
+      border-bottom: 1px solid var(--border); padding-bottom: 1.5rem;
+      z-index: 1;
+    }
+    .modal-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      width: 36px; height: 36px;
+      background: var(--ivory-dark); border: 1px solid var(--border);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: var(--transition);
+    }
+    .modal-close:hover { background: var(--green); color: #fff; }
+    .modal-body { padding: 2rem 2.5rem 2.5rem; }
+    .modal-section { margin-bottom: 2rem; }
+    .modal-section h4 {
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); font-family: 'DM Mono', monospace;
+      margin-bottom: 0.75rem; font-weight: 500;
+    }
+    .modal-section p { font-size: 0.95rem; color: var(--charcoal-mid); }
+    .metric-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+    }
+    .metric-box {
+      background: var(--green); color: #fff;
+      padding: 1.25rem; border-radius: var(--radius); text-align: center;
+    }
+    .metric-box .m-val {
+      font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold);
+    }
+    .metric-box .m-key { font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-top: 0.25rem; }
+    .modal-img-placeholder {
+      width: 100%; height: 200px;
+      background: var(--ivory-dark); border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 1.5rem;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 0.8rem; letter-spacing: 0.08em;
+    }
+    .modal-actions { display: flex; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .tech-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+    /* ─── CONTACT ─── */
+    .contact-bg { background: var(--green); }
+    .contact-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .contact-bg h2 { color: #fff; }
+    .contact-bg .section-label { background: rgba(212,160,23,0.15); }
+    .contact-bg p { color: rgba(255,255,255,0.65); }
+    .contact-channels { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
+    .channel-link {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.1rem 1.4rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      color: #fff; transition: var(--transition);
+    }
+    .channel-link:hover { background: rgba(255,255,255,0.12); transform: translateX(4px); }
+    .channel-link svg { width: 18px; height: 18px; stroke: var(--gold); flex-shrink: 0; }
+    .channel-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-bottom: 0.1rem; }
+    .channel-val { font-size: 0.95rem; font-weight: 500; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.8rem; color: rgba(255,255,255,0.6); letter-spacing: 0.05em; }
+    .form-control {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff; padding: 0.85rem 1rem;
+      border-radius: var(--radius); font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; transition: var(--transition);
+    }
+    .form-control::placeholder { color: rgba(255,255,255,0.3); }
+    .form-control:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,0.1); }
+    textarea.form-control { resize: vertical; min-height: 120px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-note { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 0.5rem; }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: #0a2f18;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 4rem 0 2rem;
+    }
+    .footer-inner {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 3rem;
+    }
+    .footer-brand {}
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: #fff; margin-bottom: 0.75rem;
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.4); max-width: 260px; }
+    .footer-social { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+    .social-link {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5); transition: var(--transition);
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+    .social-link svg { width: 16px; height: 16px; }
+    .footer-col h4 {
+      font-size: 0.75rem; letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.35); margin-bottom: 1.25rem;
+      font-family: 'DM Mono', monospace; font-weight: 400;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-links a { font-size: 0.85rem; color: rgba(255,255,255,0.5); transition: var(--transition); }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
+
+    /* ─── MOBILE NAV ─── */
+    .mobile-menu {
+      display: none; flex-direction: column;
+      position: fixed; inset: 0; top: 70px; z-index: 999;
+      background: var(--ivory);
+      padding: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu .nav-links { flex-direction: column; gap: 0; align-items: flex-start; }
+    .mobile-menu .nav-links a { font-size: 1.5rem; padding: 0.75rem 0; border-bottom: 1px solid var(--border); width: 100%; }
+    .mobile-menu .nav-cta { flex-direction: column; width: 100%; margin-top: 2rem; }
+    .mobile-menu .btn { width: 100%; justify-content: center; }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+    .fade-up:nth-child(5) { transition-delay: 0.4s; }
+    .fade-up:nth-child(6) { transition-delay: 0.5s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-photo-wrap { order: -1; }
+      .hero-photo-frame { width: 280px; height: 360px; }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-photo { max-width: 300px; aspect-ratio: 1; }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+      .process-grid::before { display: none; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 768px) {
+      .section { padding: 5rem 0; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .hero-stats { gap: 1.5rem; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .metric-row { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Veriq<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="https://wa.me/254768038877" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Lets Talk</a>
+        <a href="https://www.upwork.com" target="_blank" rel="noopener" class="btn btn-gold btn-sm">Hire Me on Upwork</a>
+      </div>
+      <div class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="nav-links">
+    <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
+    <li><a href="#services" onclick="closeMobileMenu()">Services</a></li>
+    <li><a href="#projects" onclick="closeMobileMenu()">Projects</a></li>
+    <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="https://wa.me/254768038877" target="_blank" rel="noopener" class="btn btn-outline">WhatsApp</a>
+    <a href="https://www.upwork.com/freelancers/~01d73f626239d7dc45?mp_source=share" target="_blank" rel="noopener" class="btn btn-gold">Hire Me on Upwork</a>
+  </div>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <h1>Analytics Engineering,<br><em>Business Intelligence</em><br>& AI Automation</h1>
+      <p class="hero-sub">Helping organisations transform raw data into strategic decisions, build scalable analytics infrastructure, and automate high-value business processes using AI.</p>
+      <div class="hero-actions">
+        <a href="https://cal.com/ezra-onyinkwa-k8g3qi/consultation-veriq" target="_blank" rel="noopener" class="btn btn-gold">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Schedule a Consultation
+        </a>
+        <a href="https://wa.me/254768038877" target="_blank" rel="noopener" class="btn btn-ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Quick Question? WhatsApp
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Projects Delivered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Core Specialisations</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-frame">
+        <div class="photo-placeholder">
+        <img src="Hero-Photo.jpg" alt="Set-up"  />  
+        </div>
+      </div>
+      <div class="hero-badge">
+        <strong>Veriq</strong>
+        BI · Analytics · AI
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TRUST BAR ══════════ -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-inner">
+      <span class="trust-item">SQL · Power BI · Python</span>
+      <span class="trust-sep"></span>
+      <span class="trust-item">dbt · BigQuery · Azure Cloud . Databricks</span>
+      <span class="trust-sep"></span>
+      <span class="trust-item">OpenAI · Claude · power automate</span>
+      <span class="trust-sep"></span>
+      <span class="trust-item">Make · Zapier · LangChain</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ WHY WORK WITH ME ══════════ -->
+<section class="section" id="why">
+  <div class="container">
+    <h2 class="section-title">What You Actually Get</h2>
+    <p class="section-subtitle">Not just reports and dashboards measurable business outcomes that improve how your organisation makes decisions.</p>
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <div class="why-num">01</div>
+        <h3>Decisions Backed by Data</h3>
+        <p>Replace gut-feel with dashboards and models that give your leadership team a single source of truth,updated in real time.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-num">02</div>
+        <h3>Processes That Run Themselves</h3>
+        <p>Manual, repetitive workflows automated with AI ,from lead follow-up to executive report generation so your team focuses on work that matters.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-num">03</div>
+        <h3>Executive-Grade Reporting</h3>
+        <p>Board-ready, clean, and narrative-driven dashboards that communicate performance at a glance without requiring a data team to interpret them.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-num">04</div>
+        <h3>Scalable Analytics Infrastructure</h3>
+        <p>Data pipelines and warehouses built to grow with your business — modelled correctly from day one, reducing technical debt and rework.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-num">05</div>
+        <h3>Operational Efficiency Gains</h3>
+        <p>Identify where your operations lose time and money through data. Turn those findings into process improvements with a clear ROI.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-num">06</div>
+        <h3>Insights You Can Act On</h3>
+        <p>Analysis delivered with clear business interpretation not raw numbers, but the "so what" that drives better strategy and prioritisation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ABOUT ══════════ -->
+<section class="section" id="about" style="background: var(--ivory-dark);">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <div class="about-photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span>Professional Photo</span>
+        </div>
+      </div>
+      <div class="about-content">
+        <h2 class="section-title">About Me</h2>
+        <p class="about-bio">
+          I'm a <strong>Business Intelligence Consultant, Analytics Engineer, and AI Automation Specialist</strong> who bridges the gap between raw data and real business value.
+        </p>
+        <p class="about-bio">
+          Over the past several years, I've worked across industries - helping organisations design data infrastructure that scales, build reporting systems that leaders actually use, and automate the processes that drain teams of productive time. My work sits at the intersection of <strong>business analysis, data engineering, and applied AI</strong> — a combination that lets me deliver solutions that are both technically robust and commercially meaningful.
+        </p>
+        <p class="about-bio">
+          I don't just hand over a dashboard and leave. I engage as a <strong>strategic partner</strong> understanding your business objectives first, then building solutions designed to move the needle on them.
+        </p>
+        <div class="about-facts">
+          <div class="fact-box">
+            <div class="fact-val">5+</div>
+            <div class="fact-key">Years in Data & Analytics</div>
+          </div>
+          <div class="fact-box">
+            <div class="fact-val">30+</div>
+            <div class="fact-key">Projects Delivered</div>
+          </div>
+          <div class="fact-box">
+            <div class="fact-val">3</div>
+            <div class="fact-key">Core Specialisations</div>
+          </div>
+          <div class="fact-box">
+            <div class="fact-val">Multi</div>
+            <div class="fact-key">Industries Served</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SERVICES ══════════ -->
+<section class="section services-bg" id="services">
+  <div class="container">
+    <h2 class="section-title">My Services</h2>
+    <p class="section-subtitle">Three integrated practices. Each one designed to deliver a concrete business outcome.</p>
+    <div class="services-grid">
+      <!-- BI -->
+      <div class="service-card fade-up">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 17V13M12 17V9M16 17V11"/></svg>
+        </div>
+        <h3>Business Intelligence</h3>
+        <p class="service-desc">Turn your business data into strategic intelligence. I design dashboards and reporting systems that give decision-makers the clarity they need fast.</p>
+        <ul class="service-list">
+          <li>Data Analysis & Business Analysis</li>
+          <li>Dashboard Development (Power BI/Looker Studio)</li>
+          <li>KPI Design & Executive Reporting</li>
+          <li>Customer & Revenue Analytics</li>
+          <li>Performance Monitoring Systems</li>
+        </ul>
+        <div class="service-outcome">Outcome: Leadership teams that make faster, more confident decisions.</div>
+      </div>
+      <!-- AE -->
+      <div class="service-card fade-up">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg>
+        </div>
+        <h3>Analytics Engineering</h3>
+        <p class="service-desc">Build the foundation that makes all your analytics reliable, scalable, and consistent. Clean data in, trustworthy insights out.</p>
+        <ul class="service-list">
+          <li>Data Modelling (dbt)</li>
+          <li>ELT Pipeline Development</li>
+          <li>Cloud Data Warehousing</li>
+          <li>Data Quality Management</li>
+          <li>Analytics Infrastructure Design</li>
+        </ul>
+        <div class="service-outcome">Outcome: A single source of truth your entire organisation can trust.</div>
+      </div>
+      <!-- AI -->
+      <div class="service-card fade-up">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2a7 7 0 0 1 7 7c0 2.4-1.2 4.5-3 5.7V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.3C6.2 13.5 5 11.4 5 9a7 7 0 0 1 7-7z"/><path d="M9 21h6M10 17v4M14 17v4"/></svg>
+        </div>
+        <h3>AI Automation</h3>
+        <p class="service-desc">Deploy AI where it creates the most leverage: automating workflows, qualifying leads, generating reports, and building intelligent assistants.</p>
+        <ul class="service-list">
+          <li>Workflow Automation (n8n, Make)</li>
+          <li>AI-Powered Business Processes</li>
+          <li>Lead Generation Automation</li>
+          <li>Automated Reporting Pipelines</li>
+          <li>Custom AI Agents & Assistants</li>
+        </ul>
+        <div class="service-outcome">Outcome: Hours of manual work eliminated. Teams freed for high-value work.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROCESS ══════════ -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-label">How I Work</div>
+    <h2 class="section-title">Engagement Process</h2>
+    <p class="section-subtitle">A clear, structured approach that respects your time and delivers results you can measure.</p>
+    <div class="process-grid">
+      <div class="process-step fade-up">
+        <div class="process-num">1</div>
+        <h3>Discovery Call</h3>
+        <p>We align on your business objective, current data state, and what success looks like. No jargon — just strategic clarity.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="process-num">2</div>
+        <h3>Scoped Proposal</h3>
+        <p>You receive a clear scope of work with defined deliverables, timeline, and pricing. No ambiguity, no scope creep.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="process-num">3</div>
+        <h3>Build & Iterate</h3>
+        <p>I build in structured sprints with regular check-ins so you see progress and provide input throughout — not just at the end.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div class="process-num">4</div>
+        <h3>Handover & Support</h3>
+        <p>Full documentation, training for your team, and a defined support window to ensure adoption and lasting value.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TOOLS ══════════ -->
+<section class="section tools-bg" id="tools">
+  <div class="container">
+    <div class="section-label">Tech Stack</div>
+    <h2 class="section-title">Tools & Technologies</h2>
+    <p class="section-subtitle">Production-grade tools, not toy demos. Every technology in this list has been used in a real client engagement.</p>
+    <div class="tools-grid">
+      <div class="tool-category fade-up">
+        <h4>Data Analytics</h4>
+        <div class="tool-tags">
+          <span class="tool-tag">SQL</span>
+          <span class="tool-tag">Python</span>
+          <span class="tool-tag">Power BI</span>
+          <span class="tool-tag">Excel</span>
+          <span class="tool-tag">Google Sheets</span>
+        </div>
+      </div>
+      <div class="tool-category fade-up">
+        <h4>Analytics Engineering</h4>
+        <div class="tool-tags">
+          <span class="tool-tag">dbt</span>
+          <span class="tool-tag">BigQuery</span>
+          <span class="tool-tag">PostgreSQL</span>
+          <span class="tool-tag">Snowflake</span>
+          <span class="tool-tag">Data Warehousing</span>
+        </div>
+      </div>
+      <div class="tool-category fade-up">
+        <h4>AI & Automation</h4>
+        <div class="tool-tags">
+          <span class="tool-tag">OpenAI</span>
+          <span class="tool-tag">Claude</span>
+          <span class="tool-tag">n8n</span>
+          <span class="tool-tag">Make</span>
+          <span class="tool-tag">Zapier</span>
+          <span class="tool-tag">LangChain</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROJECTS ══════════ -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Selected Projects</h2>
+    <p class="section-subtitle">Each project below represents a real business challenge solved — click to read the full case study.</p>
+    <div class="projects-filter">
+      <button class="filter-btn active" onclick="filterProjects('all', this)">All Projects</button>
+      <button class="filter-btn" onclick="filterProjects('bi', this)">Business Intelligence</button>
+      <button class="filter-btn" onclick="filterProjects('ae', this)">Analytics Engineering</button>
+      <button class="filter-btn" onclick="filterProjects('ai', this)">AI Automation</button>
+    </div>
+    <div class="projects-grid" id="projectsGrid">
+      <!-- BI Projects -->
+      <div class="project-card fade-up" data-cat="bi" onclick="openModal('p1')">
+        <div class="project-img" style="background: linear-gradient(135deg,#e8f5ee,#d4edde);">
+          <span class="project-cat-badge cat-bi">Business Intelligence</span>
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#14532D" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 17V13M12 17V9M16 17V11"/></svg>
+            <span>Dashboard Preview</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Executive Sales Performance Dashboard</h3>
+          <p>A real-time Power BI dashboard giving sales leadership a full view of pipeline health, rep performance, and revenue forecasting.</p>
+        </div>
+        <div class="project-footer">
+          <div class="tech-stack"><span class="tech-pill">Power BI</span><span class="tech-pill">SQL</span><span class="tech-pill">DAX</span></div>
+          <span style="font-size:0.78rem;color:var(--gold);font-weight:500;">Case Study →</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" data-cat="bi" onclick="openModal('p2')">
+        <div class="project-img" style="background: linear-gradient(135deg,#fff8e6,#fcedc8);">
+          <span class="project-cat-badge cat-bi">Business Intelligence</span>
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#92600a" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Analysis Preview</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Customer Retention & Churn Analysis</h3>
+          <p>Predictive churn model and segmentation analysis enabling proactive retention campaigns for a subscription business.</p>
+        </div>
+        <div class="project-footer">
+          <div class="tech-stack"><span class="tech-pill">Python</span><span class="tech-pill">SQL</span><span class="tech-pill">Power BI</span></div>
+          <span style="font-size:0.78rem;color:var(--gold);font-weight:500;">Case Study →</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" data-cat="bi" onclick="openModal('p3')">
+        <div class="project-img" style="background: linear-gradient(135deg,#e8f0fe,#d2e3fc);">
+          <span class="project-cat-badge cat-bi">Business Intelligence</span>
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            <span>KPI System Preview</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Operational KPI Monitoring System</h3>
+          <p>Automated operational scorecard delivered weekly to executives, replacing hours of manual spreadsheet consolidation.</p>
+        </div>
+        <div class="project-footer">
+          <div class="tech-stack"><span class="tech-pill">Power BI</span><span class="tech-pill">Python</span><span class="tech-pill">Excel</span></div>
+          <span style="font-size:0.78rem;color:var(--gold);font-weight:500;">Case Study →</span>
+        </div>
+      </div>
+
+      <!-- AE Projects -->
+      <div class="project-card fade-up" data-cat="ae" onclick="openModal('p4')">
+        <div class="project-img" style="background: linear-gradient(135deg,#e8f5ee,#c8e6d4);">
+          <span class="project-cat-badge cat-ae">Analytics Engineering</span>
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg>
+            <span>Architecture Preview</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Enterprise Data Warehouse Implementation</h3>
+          <p>End-to-end BigQuery data warehouse design for a multi-departmental organisation, consolidating 6 source systems.</p>
+        </div>
+        <div class="project-footer">
+          <div class="tech-stack"><span class="tech-pill">BigQuery</span><span class="tech-pill">dbt</span><span class="tech-pill">SQL</span></div>
+          <span style="font-size:0.78rem;color:var(--gold);font-weight:500;">Case Study →</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" data-cat="ae" onclick="openModal('p5')">
+        <div class="project-img" style="background: linear-gradient(135deg,#fef3e2,#fde8c4);">
+          <span class="project-cat-badge cat-ae">Analytics Engineering</span>
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#92600a" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <span>Pipeline Preview</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Modern ELT Pipeline Architecture</h3>
+          <p>Designed and deployed a modern ELT pipeline replacing a fragile legacy ETL system — improving data freshness from daily to near real-time.</p>
+        </div>
+        <div class="project-footer">
+          <div class="tech-stack"><span class="tech-pill">dbt</span><span class="tech-pill">Python</span><span class="tech-pill">Snowflake</span></div>
+          <span style="font-size:0.78rem;color:var(--gold);font-weight:500;">Case Study →</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" data-cat="ae" onclick="openModal('p6')">
+        <div class="project-img" style="background: linear-gradient(135deg,#f0fdf4,#dcfce7);">
+          <span class="project-cat-badge cat-ae">Analytics Engineering</span>
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#14532D" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Data Model Preview</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Analytics Data Model for Business Reporting</h3>
+          <p>dbt-based semantic layer unifying sales, finance, and product data into consistent, documented business metrics.</p>
+        </div>
+        <div class="project-footer">
+          <div class="tech-stack"><span class="tech-pill">dbt</span><span class="tech-pill">BigQuery</span><span class="tech-pill">SQL</span></div>
+          <span style="font-size:0.78rem;color:var(--gold);font-weight:500;">Case Study →</span>
+        </div>
+      </div>
+
+      <!-- AI Projects -->
+      <div class="project-card fade-up" data-cat="ai" onclick="openModal('p7')">
+        <div class="project-img" style="background: linear-gradient(135deg,#fdf4ff,#f3e8ff);">
+          <span class="project-cat-badge cat-ai">AI Automation</span>
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#92600a" stroke-width="1.5"><path d="M12 2a7 7 0 0 1 7 7c0 2.4-1.2 4.5-3 5.7V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.3C6.2 13.5 5 11.4 5 9a7 7 0 0 1 7-7z"/></svg>
+            <span>Workflow Preview</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>AI-Powered Lead Generation System</h3>
+          <p>n8n-based automation that researches, qualifies, and sequences outreach to leads — running 24/7 without human intervention.</p>
+        </div>
+        <div class="project-footer">
+          <div class="tech-stack"><span class="tech-pill">n8n</span><span class="tech-pill">OpenAI</span><span class="tech-pill">Python</span></div>
+          <span style="font-size:0.78rem;color:var(--gold);font-weight:500;">Case Study →</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" data-cat="ai" onclick="openModal('p8')">
+        <div class="project-img" style="background: linear-gradient(135deg,#fff7ed,#ffedd5);">
+          <span class="project-cat-badge cat-ai">AI Automation</span>
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#92600a" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span>Report Automation Preview</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Automated Executive Reporting Assistant</h3>
+          <p>AI agent that pulls data from multiple sources, generates narrative commentary, and delivers a formatted executive brief every Monday morning.</p>
+        </div>
+        <div class="project-footer">
+          <div class="tech-stack"><span class="tech-pill">Claude</span><span class="tech-pill">Make</span><span class="tech-pill">BigQuery</span></div>
+          <span style="font-size:0.78rem;color:var(--gold);font-weight:500;">Case Study →</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" data-cat="ai" onclick="openModal('p9')">
+        <div class="project-img" style="background: linear-gradient(135deg,#f0fdf4,#dcfce7);">
+          <span class="project-cat-badge cat-ai">AI Automation</span>
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#14532D" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span>Workflow Preview</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Customer Support AI Workflow Automation</h3>
+          <p>LangChain-based AI assistant handling tier-1 support queries with escalation logic — reducing support team workload by over 60%.</p>
+        </div>
+        <div class="project-footer">
+          <div class="tech-stack"><span class="tech-pill">LangChain</span><span class="tech-pill">OpenAI</span><span class="tech-pill">Zapier</span></div>
+          <span style="font-size:0.78rem;color:var(--gold);font-weight:500;">Case Study →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section class="section contact-bg" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title">Let's Discuss Your Project</h2>
+        <p style="max-width:420px; margin-bottom:0.5rem;">If you're looking to improve how your business uses data, automate time-consuming processes, or build analytics infrastructure that scales — I'd like to hear what you're working on.</p>
+        <div class="contact-channels">
+          <a href="https://wa.me/254768038877" target="_blank" rel="noopener" class="channel-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <div>
+              <div class="channel-label">WhatsApp (Quick Questions)</div>
+              <div class="channel-val">+254 768 038 877</div>
+            </div>
+          </a>
+          <a href="mailto:ezra@example.com" class="channel-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <div class="channel-label">Email</div>
+              <div class="channel-val">ezra@example.com</div>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="channel-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <div>
+              <div class="channel-label">LinkedIn</div>
+              <div class="channel-val">linkedin.com/in/ezra</div>
+            </div>
+          </a>
+          <a href="https://www.upwork.com" target="_blank" rel="noopener" class="channel-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <div>
+              <div class="channel-label">Upwork Profile</div>
+              <div class="channel-val">Hire me for a project</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" class="form-control" placeholder="Jane Mwangi" />
+            </div>
+            <div class="form-group">
+              <label>Company / Organisation</label>
+              <input type="text" class="form-control" placeholder="Acme Ltd" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" class="form-control" placeholder="jane@acme.com" />
+          </div>
+          <div class="form-group">
+            <label>What do you need help with?</label>
+            <select class="form-control" style="color:rgba(255,255,255,0.7)">
+              <option value="" style="color:#1F2937">Select a service area</option>
+              <option value="bi" style="color:#1F2937">Business Intelligence & Dashboards</option>
+              <option value="ae" style="color:#1F2937">Analytics Engineering</option>
+              <option value="ai" style="color:#1F2937">AI & Automation</option>
+              <option value="other" style="color:#1F2937">Not sure — let's talk</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tell me about the project</label>
+            <textarea class="form-control" placeholder="Briefly describe your current data challenge or what you're hoping to achieve..."></textarea>
+          </div>
+          <button class="btn btn-gold" onclick="handleFormSubmit()" style="width:100%;justify-content:center;padding:1rem;">
+            Send Message
+          </button>
+          <p class="form-note">I typically respond within 24 hours. For urgent matters, WhatsApp is fastest.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">Ezra<span>.</span></div>
+        <p class="footer-tagline">Business Intelligence · Analytics Engineering · AI Automation. Turning data into decisions.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://github.com" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="https://www.upwork.com" target="_blank" rel="noopener" class="social-link" aria-label="Upwork">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <a href="https://wa.me/254768038877" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="#services">Business Intelligence</a></li>
+          <li><a href="#services">Analytics Engineering</a></li>
+          <li><a href="#services">AI Automation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Portfolio</h4>
+        <ul class="footer-links">
+          <li><a href="#projects">BI Projects</a></li>
+          <li><a href="#projects">AE Projects</a></li>
+          <li><a href="#projects">AI Projects</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="#contact">Get in Touch</a></li>
+          <li><a href="https://www.upwork.com" target="_blank" rel="noopener">Hire on Upwork</a></li>
+          <li><a href="https://wa.me/254768038877" target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Ezra. All rights reserved. Business Intelligence · Analytics Engineering · AI Automation.</p>
+      <p class="footer-copy" style="color:rgba(255,255,255,0.15)">Built for measurable impact.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════ MODALS ══════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modalContent">
+    <div class="modal-header">
+      <div class="section-label" id="modalCat" style="margin-bottom:0.5rem;"></div>
+      <h2 id="modalTitle" style="font-size:1.6rem;"></h2>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════ JS ════════════════════════ -->
+<script>
+  // ── Project data ──
+  const projects = {
+    p1: {
+      cat: "Business Intelligence",
+      title: "Executive Sales Performance Dashboard",
+      problem: "A regional sales organisation had no unified view of pipeline performance. Sales leadership was manually compiling reports from three CRM exports each week — taking 6–8 hours and producing a report that was already outdated by the time it was distributed.",
+      approach: "I conducted stakeholder interviews with the VP of Sales and regional managers to identify the 12 key metrics they actually made decisions on. I then built a star-schema data model in SQL, connected it to Power BI, and designed an interactive dashboard with drilldown capability by region, rep, and product line.",
+      metrics: [{ val: "7hrs", key: "Saved Weekly" }, { val: "100%", key: "Data Freshness" }, { val: "3x", key: "Report Adoption" }],
+      impact: "Leadership went from a weekly static report to a live dashboard consulted daily. The time saved was redirected into actual pipeline coaching. Within one quarter, forecast accuracy improved by 22%.",
+      tech: ["Power BI", "SQL Server", "DAX", "Power Query", "SharePoint"],
+    },
+    p2: {
+      cat: "Business Intelligence",
+      title: "Customer Retention & Churn Analysis",
+      problem: "A SaaS company was losing 8% of customers monthly but had no visibility into which customers were at risk, when churn happened in the lifecycle, or what correlated with retention.",
+      approach: "I built a churn prediction model using Python (scikit-learn) trained on 18 months of behavioural and billing data. I segmented the customer base into 4 risk tiers and built a Power BI dashboard surfacing at-risk accounts to the customer success team in real time.",
+      metrics: [{ val: "34%", key: "Churn Reduction" }, { val: "18mo", key: "Data Range" }, { val: "4", key: "Risk Segments" }],
+      impact: "The customer success team prioritised outreach based on risk score. Within 90 days, monthly churn dropped from 8% to 5.3% — equivalent to retaining 40+ additional customers per month.",
+      tech: ["Python", "scikit-learn", "SQL", "Power BI", "BigQuery"],
+    },
+    p3: {
+      cat: "Business Intelligence",
+      title: "Operational KPI Monitoring System",
+      problem: "An operations team was spending every Monday morning consolidating data from 5 different spreadsheets and systems to build a weekly scorecard — a process that took 4 hours and introduced frequent errors.",
+      approach: "I automated the entire data collection process using Python scripts, stored results in a central PostgreSQL database, and built a Power BI report that auto-refreshed every Monday at 6am and distributed itself via email.",
+      metrics: [{ val: "4hrs", key: "Saved Weekly" }, { val: "0", key: "Manual Steps" }, { val: "99%", key: "Data Accuracy" }],
+      impact: "The operations team reclaimed their Monday mornings. The scorecard went from a manual chore to a trusted, consistent, automated process that now feeds board-level reporting.",
+      tech: ["Python", "PostgreSQL", "Power BI", "Power Automate", "Excel"],
+    },
+    p4: {
+      cat: "Analytics Engineering",
+      title: "Enterprise Data Warehouse Implementation",
+      problem: "A mid-size organisation had data scattered across Salesforce, NetSuite, HubSpot, and 3 internal databases. Every analyst had their own version of 'the numbers', causing constant disagreements and lost trust in reporting.",
+      approach: "I designed a medallion architecture on BigQuery — raw ingestion layer, cleaned staging layer, and business-semantic mart layer. I modelled all entities using dbt with full documentation and data contracts for each domain.",
+      metrics: [{ val: "6", key: "Sources Unified" }, { val: "1", key: "Source of Truth" }, { val: "60%", key: "Query Speed Gain" }],
+      impact: "Finance, Sales, and Product teams now query the same data layer. Analyst time spent on data cleaning dropped significantly. The warehouse became the foundation for all future reporting and ML work.",
+      tech: ["BigQuery", "dbt", "Fivetran", "SQL", "Looker", "Python"],
+    },
+    p5: {
+      cat: "Analytics Engineering",
+      title: "Modern ELT Pipeline Architecture",
+      problem: "A legacy ETL system built on custom scripts was failing regularly, required constant maintenance, and only refreshed data once every 24 hours — making real-time operational decisions impossible.",
+      approach: "I replaced the legacy system with a modern ELT architecture: Fivetran for extraction, Snowflake for storage, and dbt for transformation. I implemented incremental models, automated testing, and a CI/CD pipeline for model deployment.",
+      metrics: [{ val: "24hr→15min", key: "Data Freshness" }, { val: "85%", key: "Fewer Failures" }, { val: "40%", key: "Cost Reduction" }],
+      impact: "The team went from firefighting a brittle system to trusting a reliable one. Data latency dropped from 24 hours to under 15 minutes. Infrastructure costs fell 40% through better Snowflake query optimisation.",
+      tech: ["Snowflake", "dbt", "Fivetran", "Python", "GitHub Actions", "SQL"],
+    },
+    p6: {
+      cat: "Analytics Engineering",
+      title: "Analytics Data Model for Business Reporting",
+      problem: "A growing company had analysts writing inconsistent, undocumented SQL directly against production tables. Metric definitions varied by team, creating conflicting reports and undermining trust in the data team.",
+      approach: "I built a dbt semantic layer defining all business metrics (revenue, ARR, DAU, CAC, LTV) as documented, tested dbt models. I created a metrics catalogue and established a review workflow to govern new metric additions.",
+      metrics: [{ val: "40+", key: "Metrics Standardised" }, { val: "100%", key: "Test Coverage" }, { val: "0", key: "Metric Conflicts" }],
+      impact: "Analysts across the business now build reports on top of a shared, documented semantic layer. Metric disputes dropped to zero. Onboarding new analysts reduced from weeks to days.",
+      tech: ["dbt", "BigQuery", "SQL", "Data Catalog", "GitHub", "Python"],
+    },
+    p7: {
+      cat: "AI Automation",
+      title: "AI-Powered Lead Generation System",
+      problem: "A B2B services company was spending 20+ hours per week on manual lead research, qualification, and outreach — with inconsistent quality and no scalability as they grew.",
+      approach: "I built an n8n workflow that automatically researches prospect companies, scores leads using an OpenAI-powered qualification model, enriches contact data, and sequences personalised outreach via email — operating 24/7 without human input.",
+      metrics: [{ val: "20hrs", key: "Saved Weekly" }, { val: "3x", key: "Lead Volume" }, { val: "40%", key: "Open Rate" }],
+      impact: "The sales team went from manually chasing leads to receiving a daily prioritised list of pre-qualified, pre-researched prospects ready for a conversation. Pipeline velocity improved measurably within 6 weeks.",
+      tech: ["n8n", "OpenAI API", "Python", "Apollo.io API", "PostgreSQL", "SMTP"],
+    },
+    p8: {
+      cat: "AI Automation",
+      title: "Automated Executive Reporting Assistant",
+      problem: "A CEO was receiving fragmented data updates from 4 different teams every Monday, requiring an hour of their time to synthesise before their leadership meeting. The reports were also inconsistently formatted and often missing context.",
+      approach: "I built a Make automation that pulls data from BigQuery, Salesforce, and Google Analytics every Sunday evening, sends it to Claude's API with a structured prompt, generates a narrative executive brief, and emails it formatted at 7am Monday.",
+      metrics: [{ val: "1hr", key: "CEO Time Saved" }, { val: "100%", key: "Consistency" }, { val: "5min", key: "Delivery Time" }],
+      impact: "The CEO now arrives at Monday's leadership meeting with a clean, AI-generated brief covering all key metrics with commentary — having spent zero time on preparation. The format is consistent, trusted, and now used company-wide.",
+      tech: ["Make.com", "Claude API", "BigQuery", "Salesforce API", "Google Analytics", "Gmail API"],
+    },
+    p9: {
+      cat: "AI Automation",
+      title: "Customer Support AI Workflow Automation",
+      problem: "A fast-growing e-commerce company was drowning in tier-1 support tickets (order status, returns policy, account queries) — with a 48-hour response SLA it could no longer meet and rising support costs.",
+      approach: "I deployed a LangChain-based AI assistant connected to their order management system and knowledge base. The assistant handles tier-1 queries autonomously, drafts responses for tier-2 issues, and escalates complex cases with full context to a human agent.",
+      metrics: [{ val: "62%", key: "Tickets Automated" }, { val: "4min", key: "Avg Response Time" }, { val: "48%", key: "Cost Reduction" }],
+      impact: "Over 60% of support tickets now resolve without a human agent. Response time dropped from 48 hours to under 4 minutes for automated queries. Support costs fell 48% despite ticket volume growing 30%.",
+      tech: ["LangChain", "OpenAI GPT-4", "Zapier", "Zendesk API", "Python", "PostgreSQL"],
+    },
+  };
+
+  // ── Modal functions ──
+  function openModal(id) {
+    const p = projects[id];
+    if (!p) return;
+    document.getElementById('modalCat').textContent = p.cat;
+    document.getElementById('modalTitle').textContent = p.title;
+    document.getElementById('modalBody').innerHTML = `
+      <div class="modal-img-placeholder">[ Project Screenshot Placeholder ]</div>
+      <div class="modal-section">
+        <h4>Problem Statement</h4>
+        <p>${p.problem}</p>
+      </div>
+      <div class="modal-section">
+        <h4>My Approach</h4>
+        <p>${p.approach}</p>
+      </div>
+      <div class="modal-section">
+        <h4>Business Impact</h4>
+        <div class="metric-row">
+          ${p.metrics.map(m => `<div class="metric-box"><div class="m-val">${m.val}</div><div class="m-key">${m.key}</div></div>`).join('')}
+        </div>
+      </div>
+      <div class="modal-section">
+        <h4>Outcomes</h4>
+        <p>${p.impact}</p>
+      </div>
+      <div class="modal-section">
+        <h4>Technologies Used</h4>
+        <div class="tech-list">${p.tech.map(t => `<span class="tool-tag">${t}</span>`).join('')}</div>
+      </div>
+      <div class="modal-actions">
+        <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          View on GitHub
+        </a>
+        <a href="https://www.upwork.com" target="_blank" rel="noopener" class="btn btn-gold btn-sm">Hire Me on Upwork</a>
+      </div>
+    `;
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ── Filter ──
+  function filterProjects(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+    });
+  }
+
+  // ── Navbar scroll ──
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ── Hamburger ──
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // ── Scroll animations ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── Form submit ──
+  function handleFormSubmit() {
+    alert('Thank you for your message. I will respond within 24 hours.');
+  }
+</script>
+</body>
+</html>
