@@ -650,12 +650,12 @@
       .tools-grid { grid-template-columns: repeat(2, 1fr); }
       .projects-grid { grid-template-columns: repeat(2, 1fr); }
       .process-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-      .process-grid::before { display: none; }
+      .process-grid::before { display: flex; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
     }
     @media (max-width: 768px) {
       .section { padding: 5rem 0; }
-      .nav-links, .nav-cta { display: none; }
+      .nav-links, .nav-cta { display: flex; }
       .hamburger { display: flex; }
       .hero-stats { gap: 1.5rem; }
       .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
@@ -685,7 +685,7 @@
       </ul>
       <div class="nav-cta">
         <a href="https://wa.me/254768038877" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Lets Talk</a>
-        <a href="https://www.upwork.com" target="_blank" rel="noopener" class="btn btn-gold btn-sm">Hire Me on Upwork</a>
+        <a href="https://www.upwork.com/freelancers/~01d73f626239d7dc45?mp_source=share" target="_blank" rel="noopener" class="btn btn-gold btn-sm">Hire Me on Upwork</a>
       </div>
       <div class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
