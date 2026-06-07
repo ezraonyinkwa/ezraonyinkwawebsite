@@ -457,17 +457,22 @@
     }
     .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
     .project-img {
-      height: 200px;
-      background: linear-gradient(135deg, var(--ivory-dark), var(--ivory));
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
-    }
-    .project-img .img-placeholder {
-      color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em;
-      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-    }
-    .project-img svg { width: 36px; height: 36px; }
-    .project-cat-badge {
+  height: 200px;
+  background: var(--ivory-dark);
+  position: relative;
+  overflow: hidden;
+}
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.project-card:hover .project-img img {
+  transform: scale(1.05);
+}    .project-cat-badge {
       position: absolute; top: 1rem; left: 1rem;
       font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
       font-family: 'DM Mono', monospace;
@@ -785,7 +790,7 @@
       <span class="trust-item">Make · Zapier · LangChain</span>
       <span class="trust-sep"></span>
       <!-- Duplicate for seamless loop -->
-      <span class="trust-item">. SQL · Power BI · Python</span>
+      <span class="trust-item">SQL · Power BI · Python</span>
       <span class="trust-sep"></span>
       <span class="trust-item">dbt · BigQuery · Azure Cloud · Databricks</span>
       <span class="trust-sep"></span>
@@ -1026,13 +1031,10 @@
     <div class="projects-grid" id="projectsGrid">
       <!-- BI Projects -->
       <div class="project-card fade-up" data-cat="bi" onclick="openModal('p1')">
-        <div class="project-img" style="background: linear-gradient(135deg,#e8f5ee,#d4edde);">
-          <span class="project-cat-badge cat-bi">Business Intelligence</span>
-          <div class="img-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#14532D" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 17V13M12 17V9M16 17V11"/></svg>
-            <span>Dashboard Preview</span>
-          </div>
-        </div>
+       <div class="project-img">
+        <span class="project-cat-badge cat-bi">Business Intelligence</span>
+        <img src="sales.jpg" alt="Sales Performance Dashboard" />
+    </div>
         <div class="project-body">
           <h3>Executive Sales Performance Dashboard</h3>
           <p>A real-time Power BI dashboard giving sales leadership a full view of pipeline health, rep performance, and revenue forecasting.</p>
@@ -1047,7 +1049,7 @@
         <div class="project-img" style="background: linear-gradient(135deg,#fff8e6,#fcedc8);">
           <span class="project-cat-badge cat-bi">Business Intelligence</span>
           <div class="img-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#92600a" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            
             <span>Analysis Preview</span>
           </div>
         </div>
@@ -1430,8 +1432,7 @@
     document.getElementById('modalCat').textContent = p.cat;
     document.getElementById('modalTitle').textContent = p.title;
     document.getElementById('modalBody').innerHTML = `
-      <div class="modal-img-placeholder">[ Project Screenshot Placeholder ]</div>
-      <div class="modal-section">
+            <div class="modal-section">
         <h4>Problem Statement</h4>
         <p>${p.problem}</p>
       </div>
