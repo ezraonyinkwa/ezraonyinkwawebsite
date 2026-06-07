@@ -1060,14 +1060,14 @@
       <div class="project-card fade-up" data-cat="bi" onclick="openModal('p3')">
         <div class="project-img">
         <span class="project-cat-badge cat-bi">Business Intelligence</span>
-        <img src="KPI.jpg" alt="Customer Retention & Churn Analysis" />
+        <img src="fraud.jpg" alt="Fraud Detection Analytics System (SQL)" />
     </div>
         <div class="project-body">
-          <h3>Operational KPI Monitoring System</h3>
-          <p>Automated operational scorecard delivered weekly to executives, replacing hours of manual spreadsheet consolidation.</p>
+          <h3>Fraud Detection Analytics System (SQL)</h3>
+          <p>Implemented a SQL-powered fraud detection system with automated risk rules and Power BI monitoring, providing real-time visibility into suspicious transaction patterns and anomalies.</p>
         </div>
         <div class="project-footer">
-          <div class="tech-stack"><span class="tech-pill">Power BI</span><span class="tech-pill">Python</span><span class="tech-pill">Excel</span></div>
+          <div class="tech-stack"><span class="tech-pill">SQL</span><span class="tech-pill">Power BI</span><span class="tech-pill">Data Validation</span></div>
           <span style="font-size:0.78rem;color:var(--gold);font-weight:500;">Case Study →</span>
         </div>
       </div>
@@ -1337,12 +1337,13 @@
     },
     p3: {
       cat: "Business Intelligence",
-      title: "Operational KPI Monitoring System",
-      problem: "An operations team was spending every Monday morning consolidating data from 5 different spreadsheets and systems to build a weekly scorecard — a process that took 4 hours and introduced frequent errors.",
-      approach: "I automated the entire data collection process using Python scripts, stored results in a central PostgreSQL database, and built a Power BI report that auto-refreshed every Monday at 6am and distributed itself via email.",
-      metrics: [{ val: "4hrs", key: "Saved Weekly" }, { val: "0", key: "Manual Steps" }, { val: "99%", key: "Data Accuracy" }],
-      impact: "The operations team reclaimed their Monday mornings. The scorecard went from a manual chore to a trusted, consistent, automated process that now feeds board-level reporting.",
-      tech: ["Python", "PostgreSQL", "Power BI", "Power Automate", "Excel"],
+      title: "Fraud Detection Analytics System (SQL)",
+      problem: "A banking dataset with daily transaction activity had no structured mechanism for identifying suspicious behaviour. Fraud signals — shared devices, IP anomalies, unusual locations, repeated login failures — were present in the data but invisible without a detection layer.",
+      approach: "I built a Star Schema data model and implemented 9 SQL-based fraud detection rules covering transaction velocity, high-value threshold breaches, device sharing, IP address anomalies, location outliers, rapid balance depletion, and off-hours activity. Each rule was validated against the dataset and annotated with its findings. Results were surfaced in a Power BI monitoring dashboard with built-in anomaly detection enabled on transaction trends, giving stakeholders a live view of flagging patterns without querying the database directly.",
+      metrics: [{ val: "344", key: "Device-Sharing Cases Flagged" }, { val: "338", key: "IP-to-Merchant Anomalies Detected " }, { val: "24", key: "Unusual Location Transactions Identified" }],
+      impact: "Fraud signals that were previously buried in raw transaction data became queryable and actionable. The rule engine also surfaced a meaningful negative finding: zero velocity fraud cases and zero off-hours transactions, indicating fraudsters had shifted tactics itself a useful signal for refining detection strategy.",
+      tech: ["SQL", "Power BI", "Data Validation", "Anomaly Detection", "Relational Database Design","Star Schema Modeling"],
+      github: "https://github.com/ezraonyinkwa/SQL-Rule-Based-Fraud-Detection",
 
     },
     p4: {
