@@ -1030,14 +1030,14 @@
       <div class="project-card fade-up" data-cat="bi" onclick="openModal('p1')">
        <div class="project-img">
         <span class="project-cat-badge cat-bi">Business Intelligence</span>
-        <img src="sales.jpg" alt="Sales Performance Dashboard" />
+        <img src="loan.jpg" alt="Sales Performance Dashboard" />
     </div>
         <div class="project-body">
-          <h3>Executive Sales Performance Dashboard</h3>
-          <p>A real-time Power BI dashboard giving sales leadership a full view of pipeline health, rep performance, and revenue forecasting.</p>
+          <h3>Phone Loan Portfolio Analysis</h3>
+          <p>A comprehensive analysis of the phone loan portfolio, providing insights into default risks, customer behavior, and profitability.</p>
         </div>
         <div class="project-footer">
-          <div class="tech-stack"><span class="tech-pill">Power BI</span><span class="tech-pill">SQL</span><span class="tech-pill">DAX</span></div>
+          <div class="tech-stack"><span class="tech-pill">Python</span><span class="tech-pill">Power Point</span><span class="tech-pill">Git</span></div>
           <span style="font-size:0.78rem;color:var(--gold);font-weight:500;">Case Study →</span>
         </div>
       </div>
@@ -1317,12 +1317,13 @@
   const projects = {
     p1: {
       cat: "Business Intelligence",
-      title: "Executive Sales Performance Dashboard",
-      problem: "A regional sales organisation had no unified view of pipeline performance. Sales leadership was manually compiling reports from three CRM exports each week — taking 6–8 hours and producing a report that was already outdated by the time it was distributed.",
-      approach: "I conducted stakeholder interviews with the VP of Sales and regional managers to identify the 12 key metrics they actually made decisions on. I then built a star-schema data model in SQL, connected it to Power BI, and designed an interactive dashboard with drilldown capability by region, rep, and product line.",
-      metrics: [{ val: "7hrs", key: "Saved Weekly" }, { val: "100%", key: "Data Freshness" }, { val: "3x", key: "Report Adoption" }],
-      impact: "Leadership went from a weekly static report to a live dashboard consulted daily. The time saved was redirected into actual pipeline coaching. Within one quarter, forecast accuracy improved by 22%.",
-      tech: ["Power BI", "SQL Server", "DAX", "Power Query", "SharePoint"],
+      title: "Phone Loan Portfolio Analysis",
+      problem: "A phone company offering device financing needed visibility into the health of its loan portfolio. Without a structured view of delinquency patterns and non-performing exposure, risk was being managed reactively — with no reliable way to identify which customer segments were driving losses or how portfolio quality was shifting over time.",
+      approach: "I built an end-to-end Python analytics pipeline covering data loading, cleaning, quality checks, feature engineering, and analysis. I engineered delinquency flags and age-group segmentations, computed NPE rates against total exposure, and produced time-series and segment-level breakdowns visualised for stakeholder consumption.",
+      metrics: [{ val: "14.2%", key: "NPE Rate Identified" }, { val: "19-25", key: "Cohort Flagged as 1.8× Risk" }, { val: "-0.91", key: "Correlation Between NPS and Default Rate" }],
+      impact: "The business gained a structured view of non-performing exposure by customer segment and reporting period. Risk patterns that were previously invisible became quantifiable, enabling more proactive portfolio management and better-informed lending decisions.",
+      tech: ["Python", "Pandas", "Matplotlib", "NumPy","Seaborn", "Power Point", "Git"],
+      github: "https://github.com/ezraonyinkwa/Phone-loan-portfolio-analysis",
     },
     p2: {
       cat: "Business Intelligence",
@@ -1332,6 +1333,7 @@
       metrics: [{ val: "34%", key: "Churn Reduction" }, { val: "18mo", key: "Data Range" }, { val: "4", key: "Risk Segments" }],
       impact: "The customer success team prioritised outreach based on risk score. Within 90 days, monthly churn dropped from 8% to 5.3% — equivalent to retaining 40+ additional customers per month.",
       tech: ["Python", "scikit-learn", "SQL", "Power BI", "BigQuery"],
+      github: "https://github.com/ezraonyinkwa/Customer-Churn-Analysis",
     },
     p3: {
       cat: "Business Intelligence",
@@ -1341,6 +1343,7 @@
       metrics: [{ val: "4hrs", key: "Saved Weekly" }, { val: "0", key: "Manual Steps" }, { val: "99%", key: "Data Accuracy" }],
       impact: "The operations team reclaimed their Monday mornings. The scorecard went from a manual chore to a trusted, consistent, automated process that now feeds board-level reporting.",
       tech: ["Python", "PostgreSQL", "Power BI", "Power Automate", "Excel"],
+
     },
     p4: {
       cat: "Analytics Engineering",
@@ -1350,6 +1353,7 @@
       metrics: [{ val: "6", key: "Sources Unified" }, { val: "1", key: "Source of Truth" }, { val: "65%", key: "Query Speed Gain" }],
       impact: "Customer behaviour, product performance, and sales trends became queryable from a single, trusted data layer. Analysts no longer needed to reconcile conflicting exports. The warehouse was documented for both technical and business stakeholders, making it extensible for future reporting and analytics work.",
       tech: ["SQL Server", "T-SQL", "Medallion Architecture", "Draw.io"],
+      github: "https://github.com/ezraonyinkwa/SQL-Data-Warehouse-Project",
     },
     p5: {
       cat: "Analytics Engineering",
@@ -1428,10 +1432,10 @@
         <div class="tech-list">${p.tech.map(t => `<span class="tool-tag">${t}</span>`).join('')}</div>
       </div>
       <div class="modal-actions">
-        <a href="https://github.com/ezraonyinkwa" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          View on GitHub
-        </a>
+       <a href="${p.github}" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+  View on GitHub
+  </a>
         <a href="https://www.upwork.com/freelancers/~01d73f626239d7dc45?mp_source=share" target="_blank" rel="noopener" class="btn btn-gold btn-sm">Hire Me on Upwork</a>
       </div>
     `;
