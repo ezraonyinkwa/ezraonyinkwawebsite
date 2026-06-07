@@ -225,21 +225,40 @@
     .hero-badge strong { display: block; font-size: 1.1rem; font-family: 'Playfair Display', serif; }
 
     /* ─── TRUST BAR ─── */
-    .trust-bar {
-      background: var(--ivory-dark);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 1.5rem 0;
-    }
-    .trust-inner {
-      display: flex; align-items: center; justify-content: center;
-      gap: 3rem; flex-wrap: wrap;
-    }
-    .trust-item {
-      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted); font-family: 'DM Mono', monospace;
-    }
-    .trust-sep { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
+   .trust-bar {
+  background: var(--ivory-dark);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 0;
+  overflow: hidden;
+}
+.trust-track-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+.trust-track {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+.trust-track:hover {
+  animation-play-state: paused;
+}
+.trust-item {
+  font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); font-family: 'DM Mono', monospace;
+  white-space: nowrap;
+}
+.trust-sep {
+  width: 4px; height: 4px; background: var(--gold);
+  border-radius: 50%; flex-shrink: 0;
+}
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
     /* ─── WHY WORK WITH ME ─── */
     .why-grid {
@@ -766,7 +785,7 @@
       <span class="trust-item">Make · Zapier · LangChain</span>
       <span class="trust-sep"></span>
       <!-- Duplicate for seamless loop -->
-      <span class="trust-item">SQL · Power BI · Python</span>
+      <span class="trust-item">. SQL · Power BI · Python</span>
       <span class="trust-sep"></span>
       <span class="trust-item">dbt · BigQuery · Azure Cloud · Databricks</span>
       <span class="trust-sep"></span>
