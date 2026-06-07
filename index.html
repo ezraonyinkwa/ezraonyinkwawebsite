@@ -1048,11 +1048,11 @@
         <img src="customer.jpg" alt="Customer Retention & Churn Analysis" />
     </div>
         <div class="project-body">
-          <h3>Customer Retention & Churn Analysis</h3>
-          <p>Predictive churn model and segmentation analysis enabling proactive retention campaigns for a subscription business.</p>
+          <h3>Customer Churn Analysis</h3>
+          <p>Customer churn analysis and segmentation model enabling proactive retention campaigns and improved visibility into revenue at risk.</p>
         </div>
         <div class="project-footer">
-          <div class="tech-stack"><span class="tech-pill">Python</span><span class="tech-pill">SQL</span><span class="tech-pill">Power BI</span></div>
+          <div class="tech-stack"><span class="tech-pill">Power BI</span><span class="tech-pill">DAX</span><span class="tech-pill">Data Modelling</span></div>
           <span style="font-size:0.78rem;color:var(--gold);font-weight:500;">Case Study →</span>
         </div>
       </div>
@@ -1327,12 +1327,12 @@
     },
     p2: {
       cat: "Business Intelligence",
-      title: "Customer Retention & Churn Analysis",
-      problem: "A SaaS company was losing 8% of customers monthly but had no visibility into which customers were at risk, when churn happened in the lifecycle, or what correlated with retention.",
-      approach: "I built a churn prediction model using Python (scikit-learn) trained on 18 months of behavioural and billing data. I segmented the customer base into 4 risk tiers and built a Power BI dashboard surfacing at-risk accounts to the customer success team in real time.",
-      metrics: [{ val: "34%", key: "Churn Reduction" }, { val: "18mo", key: "Data Range" }, { val: "4", key: "Risk Segments" }],
-      impact: "The customer success team prioritised outreach based on risk score. Within 90 days, monthly churn dropped from 8% to 5.3% — equivalent to retaining 40+ additional customers per month.",
-      tech: ["Python", "scikit-learn", "SQL", "Power BI", "BigQuery"],
+      title: "Customer Churn Analysis",
+      problem: "A financial services business was losing customers at a steady rate despite strong acquisition numbers. Leadership had no structured view of which customers were most at risk or what attrition was actually costing them so retention spend was unfocused and the revenue leakage went unquantified.",
+      approach: "I built a star-schema data model in Power BI across three related tables — customer demographics, regional data, and account details — with Customer ID as the primary key. I engineered DAX measures for churn rates, revenue at risk, and segment KPIs, then delivered two purpose-built dashboards: one profiling who is leaving, and one quantifying what it costs.",
+      metrics: [{ val: "(0-3Yrs),", key: "High-Risk Segments Isolated for Targeting" }, { val: "20.37%", key: " Churn Rate Uncovered" }, { val: "KES 120.75M", key: "In Deposit Exposure Quantified" }],
+      impact: "Early-tenure customers (0–3 years) and the 35–46 age cohort emerged as the highest-risk segments. Inactive members holding credit cards showed disproportionate exit rates. High-balance customers leaving translated to significant deposit loss — with modelling showing that retaining the top 10% of high-value accounts could recover a large share of annual revenue leakage. Churn was reframed from a customer satisfaction issue to a revenue protection priority.",
+      tech: [ "Power BI", "DAX", "Data Modelling", "Data Visualization", "Revenue Impact Analysis"],
       github: "https://github.com/ezraonyinkwa/Customer-Churn-Analysis",
     },
     p3: {
