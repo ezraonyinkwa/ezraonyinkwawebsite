@@ -678,20 +678,50 @@
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
     }
     @media (max-width: 768px) {
-      .section { padding: 5rem 0; }
-      .nav-links, .nav-cta { display: flex; }
-      .hamburger { display: flex; }
-      .hero-stats { gap: 1.5rem; }
-      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .form-row { grid-template-columns: 1fr; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .why-grid { grid-template-columns: 1fr; }
-      .tools-grid { grid-template-columns: 1fr; }
-      .process-grid { grid-template-columns: 1fr; }
-      .metric-row { grid-template-columns: 1fr 1fr; }
-      .footer-inner { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-    }
+  .section { padding: 5rem 0; }
+  .navbar .nav-links { display: none; }
+  .navbar .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .hero-stats { gap: 1.5rem; }
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr; }
+  .metric-row { grid-template-columns: 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+
+  /* Mobile menu links always visible when menu is open */
+  .mobile-menu .nav-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    list-style: none;
+    gap: 0;
+  }
+  .mobile-menu .nav-links a {
+    display: block;
+    font-size: 1.1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    width: 100%;
+    color: var(--charcoal);
+  }
+  .mobile-menu .nav-cta {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1.5rem;
+    gap: 0.75rem;
+  }
+  .mobile-menu .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
   </style>
 </head>
 <body>
