@@ -555,6 +555,7 @@
     }
     .modal-actions { display: flex; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
     .tech-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    
 
     /* ─── CONTACT ─── */
     .contact-bg { background: var(--green); }
@@ -722,6 +723,136 @@
     text-align: center;
   }
 }
+/* ─── TESTIMONIALS ─── */
+.testimonials-section { background: var(--ivory-dark); }
+.testimonials-wrapper {
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+.testimonials-track {
+  overflow: hidden;
+  position: relative;
+  min-height: 280px;
+}
+.testimonial-card {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1), transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+}
+.testimonial-card.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: all;
+  position: relative;
+}
+.testimonial-card.exit-left {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+.testimonial-card.exit-right {
+  opacity: 0;
+  transform: translateX(60px);
+}
+.testimonial-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  color: var(--gold);
+  line-height: 0.5;
+  margin-bottom: 1.5rem;
+  opacity: 0.4;
+}
+.testimonial-text {
+  font-size: 1.05rem;
+  color: var(--charcoal);
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+.author-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.author-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+.author-org {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.1rem;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.05em;
+}
+.testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 0;
+}
+.dot.active {
+  background: var(--gold);
+  width: 24px;
+  border-radius: 4px;
+}
+.testimonial-arrow {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--charcoal);
+}
+.testimonial-arrow:hover {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+.arrow-prev { left: 0; }
+.arrow-next { right: 0; }
+
+@media (max-width: 768px) {
+  .testimonials-wrapper { padding: 0 2.5rem; }
+  .testimonial-card { padding: 2rem 1.5rem; }
+  .testimonial-text { font-size: 0.95rem; }
+}
   </style>
 </head>
 <body>
@@ -735,6 +866,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav-cta">
@@ -754,6 +886,7 @@
     <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
     <li><a href="#services" onclick="closeMobileMenu()">Services</a></li>
     <li><a href="#projects" onclick="closeMobileMenu()">Projects</a></li>
+    <li><a href="#testimonials" onclick="closeMobileMenu()">Testimonials</a></li>
     <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
   </ul>
   <div class="nav-cta">
@@ -1196,6 +1329,71 @@
     </div>
   </div>
 </section>
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<section class="section testimonials-section" id="testimonials">
+  <div class="container">
+    <h2 class="section-title">What Clients Say</h2>
+    <p class="section-subtitle">Outcomes described in the words of the people who experienced them.</p>
+    <div class="testimonials-wrapper">
+      <div class="testimonials-track" id="testimonialsTrack">
+
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">Ezra built dashboards our leadership team uses in every weekly review. Before, we were pulling numbers manually from three different systems. Now it's one screen and the conversation moves faster.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">E</div>
+            <div>
+              <div class="author-name">Operations Manager, FMCG</div>
+              <div class="author-org">Kenya</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">What I appreciated most was that Ezra came in asking business questions, not just technical ones. The output was built around our actual decisions, not just data outputs.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">C</div>
+            <div>
+              <div class="author-name">Senior Economist, Analytics Firm</div>
+              <div class="author-org">Kingston,Ontario,Canada</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">The fraud detection system flagged patterns our existing controls completely missed. That alone justified the entire engagement — the 344 flagged cases were the first hard evidence we had of organised device-sharing abuse.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">F</div>
+            <div>
+              <div class="author-name">Risk & Compliance Lead, Financial Services</div>
+              <div class="author-org">Nairobi</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation dots -->
+      <div class="testimonial-dots" id="testimonialDots">
+        <button class="dot active" onclick="goToTestimonial(0)"></button>
+        <button class="dot" onclick="goToTestimonial(1)"></button>
+        <button class="dot" onclick="goToTestimonial(2)"></button>
+      </div>
+
+      <!-- Arrow controls -->
+      <button class="testimonial-arrow arrow-prev" onclick="prevTestimonial()" aria-label="Previous">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="testimonial-arrow arrow-next" onclick="nextTestimonial()" aria-label="Next">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+
+    </div>
+  </div>
+</section>
+
 
 <!-- ══════════ CONTACT ══════════ -->
 <section class="section contact-bg" id="contact">
@@ -1521,6 +1719,56 @@
     this.reset();
   }, 500);
 });
+// ── Testimonials ──
+let currentTestimonial = 0;
+let testimonialDirection = 'next';
+const cards = document.querySelectorAll('.testimonial-card');
+const dots = document.querySelectorAll('.dot');
+
+function showTestimonial(index) {
+  cards.forEach((card, i) => {
+    card.classList.remove('active', 'exit-left', 'exit-right');
+    if (i === index) {
+      card.classList.add('active');
+    }
+  });
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+  currentTestimonial = index;
+}
+
+function nextTestimonial() {
+  const next = (currentTestimonial + 1) % cards.length;
+  cards[currentTestimonial].classList.add('exit-left');
+  setTimeout(() => showTestimonial(next), 50);
+}
+
+function prevTestimonial() {
+  const prev = (currentTestimonial - 1 + cards.length) % cards.length;
+  cards[currentTestimonial].classList.add('exit-right');
+  setTimeout(() => showTestimonial(prev), 50);
+}
+
+function goToTestimonial(index) {
+  const direction = index > currentTestimonial ? 'exit-left' : 'exit-right';
+  cards[currentTestimonial].classList.add(direction);
+  setTimeout(() => showTestimonial(index), 50);
+}
+
+// Auto advance every 6 seconds
+let testimonialTimer = setInterval(nextTestimonial, 6000);
+
+// Reset timer on manual interaction
+document.querySelectorAll('.dot, .testimonial-arrow').forEach(el => {
+  el.addEventListener('click', () => {
+    clearInterval(testimonialTimer);
+    testimonialTimer = setInterval(nextTestimonial, 6000);
+  });
+});
+
+// Initialise first card
+showTestimonial(0);
 </script>
 </body>
 </html>
